@@ -1,0 +1,151 @@
+PLANNING!!!!
+
+MODELS
+    A user will:
+        have many journals
+        have many trails through journals
+    A journal will:
+        belong to a user 
+        belong to a trail
+    A trail will:
+        have many journals
+        have many users through journals
+
+DATABASE SCHEMA
+
+users       
+    username - string
+    email - string
+    password - string
+
+journals
+    user_id - integer
+    trail_id - integer
+
+trails
+    //from hiker_project
+    hiker_project_id - integer  //trail id from hiker_project
+    name - string               //name of trail
+    summary - string            //summary of trail
+    difficulty - string         //difficulty rating of trail
+    imgMedium - string          //image from trail
+    length - decimal            //length of trail
+    ascent - decimal            //trail ascent
+    descent - decimal           //trail descent
+    conditionStatus - string    //trail condition conditionStatus
+    conditionDetails - string   //trail conditions details
+    conditionDate - date        //date of trail conditions update
+
+    //user input for each run
+    date_of_run - datetime      //date and time of trail run
+
+
+    When a User selects the trail above, the below attributes are set to False
+
+    //user input added for each run into the running journal
+    t-shirt - boolean            //shirt for run
+    shorts - boolean             //shorts for run
+    pants - boolean              //pants for run
+    hat - boolean                //hat, bandana, etc for run
+    jacket - boolean             //jacket for run
+    gloves - boolean             //gloves or mittens
+    shoes - boolean              //trail shoes
+    socks - boolean              //trail socks
+    map - boolean                //map/gps of some sort
+    watch - boolean              //watch for run
+    cellphone - boolean          //cell phone for run
+    food - boolean               //food for run
+    running_pack - boolean       //backpack to bring on run
+    water - boolean              //water for run
+    first_aid_pack - boolean     //
+    sunscreen - boolean
+    bugspray - boolean
+
+
+
+When users add a trail to run, they only have to input the date and time of the run. 
+When they view the run, booleans (CHECK or X) run with their packing list.
+
+
+
+
+
+
+
+
+
+
+
+FETCHING TO GET LONG/LAT
+(key is in .env)
+
+fetch('https://api.geocod.io/v1.6/geocode?q=Baton-Rouge%2c+LA&api_key=GEOCODIO_API_KEY_FROM_ENV_FILE')
+.then(resp => resp.json())
+.then(keys => console.log(keys))
+
+This returns JSON:
+
+input:
+address_components:
+city: "Baton Rouge"
+country: "US"
+state: "LA"
+__proto__: Object
+formatted_address: "Baton Rouge, LA"
+__proto__: Object
+results: Array(100)
+0:
+accuracy: 1
+accuracy_type: "place"
+address_components:
+city: "Baton Rouge"
+country: "US"
+county: "East Baton Rouge Parish"
+state: "LA"
+zip: "70801"
+__proto__: Object
+formatted_address: "Baton Rouge, LA 70801"
+location:
+lat: 30.44924
+lng: -91.185607
+__proto__: Object
+source: "TIGER/Line® dataset from the US Census Bureau"
+
+
+
+FETCHING TO HIKING PROJECT api
+(key is in .env)
+
+EX: Fetching to lat/long for san marcos, TX trails
+fetch('https://www.hikingproject.com/data/get-trails?lat=29.972907&lon=-97.997166&maxDistance=10&key=HIKING_PROJECT_API_KEY_FROM_ENV_FILE')
+.then(resp => resp.json())
+.then(keys => console.log(keys))
+
+
+{
+  "trails": [
+    {
+      "id": 7051619,
+      "name": "Lime Kiln Loop",
+      "type": "Recommended Route",
+      "summary": "This loop in the eastern part of the park offers something for everyone!",
+      "difficulty": "blue",
+      "stars": 3.5,
+      "starVotes": 2,
+      "location": "San Marcos, Texas",
+      "url": "https://www.hikingproject.com/trail/7051619/lime-kiln-loop",
+      "imgSqSmall": "https://cdn2.apstatic.com/photos/hike/7048293_sqsmall_1555538919.jpg",
+      "imgSmall": "https://cdn2.apstatic.com/photos/hike/7048293_small_1555538919.jpg",
+      "imgSmallMed": "https://cdn2.apstatic.com/photos/hike/7048293_smallMed_1555538919.jpg",
+      "imgMedium": "https://cdn2.apstatic.com/photos/hike/7048293_medium_1555538919.jpg",
+      "length": 1.3,
+      "ascent": 172,
+      "descent": -177,
+      "high": 752,
+      "low": 605,
+      "longitude": -97.9296,
+      "latitude": 29.9034,
+      "conditionStatus": "Unknown",
+      "conditionDetails": null,
+      "conditionDate": "1970-01-01 00:00:00"
+    },
