@@ -11,7 +11,7 @@ class CreateTrails < ActiveRecord::Migration[6.0]
       t.decimal :descent
       t.string :conditionStatus
       t.string :conditionDetails
-      t.date :conditionData
+      t.date :conditionDate
       t.datetime :date_of_run
       t.boolean :t_shirt, default: false
       t.boolean :shorts, default: false
