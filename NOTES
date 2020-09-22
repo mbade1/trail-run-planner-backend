@@ -16,7 +16,7 @@ DATABASE SCHEMA
 users       
     username - string
     email - string
-    password - string
+    password_digest - string
 
 journals
     user_id - integer
@@ -39,8 +39,7 @@ trails
     //user input for each run
     date_of_run - datetime      //date and time of trail run
 
-
-    When a User selects the trail above, the below attributes are set to False
+    //When a User selects the trail above, the below attributes are set to False
 
     //user input added for each run into the running journal
     t-shirt - boolean            //shirt for run
