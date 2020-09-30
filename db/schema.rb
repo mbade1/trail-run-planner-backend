@@ -21,16 +21,6 @@ ActiveRecord::Schema.define(version: 2020_09_22_203518) do
 
   create_table "trails", force: :cascade do |t|
     t.integer "hiker_project_id"
-    t.string "name"
-    t.string "summary"
-    t.string "difficulty"
-    t.string "imgMedium"
-    t.decimal "length"
-    t.decimal "ascent"
-    t.decimal "descent"
-    t.string "conditionStatus"
-    t.string "conditionDetails"
-    t.date "conditionDate"
     t.datetime "date_of_run"
     t.boolean "t_shirt", default: false
     t.boolean "shorts", default: false
