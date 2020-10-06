@@ -1,5 +1,5 @@
-user_one = User.create(username: 'Rudy', email: 'rudy@gmail.com', password_digest: 'password')
-user_two = User.create(username: 'Theo', email: 'theo@gmail.com', password_digest: 'password')
+user_one = User.create(username: 'Rudy', password_digest: 'password')
+user_two = User.create(username: 'Theo', password_digest: 'password')
 
 
 journal_one = Journal.create(user_id: 1, trail_id: 1)

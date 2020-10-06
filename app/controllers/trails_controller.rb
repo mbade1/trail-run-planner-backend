@@ -6,6 +6,7 @@ class TrailsController < ApplicationController
 
     def create
         trail = Trail.new(trails_params)
+        binding.pry
         if trail.save
           render json: trail, except: [:created_at, :updated_at]
         else

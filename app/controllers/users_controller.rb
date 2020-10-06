@@ -6,17 +6,28 @@ class UsersController < ApplicationController
     end
     
     def create
-      user = User.new(user_params)
+      user = User.new
+      user.username = params[:user]
+      user.password = params[:password]
       if user.save
-        render json: user, except: [:created_at, :updated_at]
+        render json: user
       else
         render json: {message: "Signup Failed"}
       end
     end
 
+    def login 
+      user = User.find_by(username: params[:username])
+      if (user && user.authenticate(params[:password]))
+        render json: user
+      else
+        render json: {message: "User Not Found. Click on Sign Up to make a new account."}
+      end
+    end
+
     def show
-      binding.pry
-      user = User.find_by(id: params[:id])
+      user = User.find_by(username: params[:user])
+
       if user
         render json: user
       else 
@@ -27,6 +38,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :email, :password)
+        params.require(:user).permit(:username, :password)
     end
 end
