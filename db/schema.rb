@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2020_09_22_203518) do
   create_table "journals", force: :cascade do |t|
     t.integer "user_id"
     t.integer "trail_id"
+    t.string "date_of_run"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

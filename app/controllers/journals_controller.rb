@@ -5,9 +5,12 @@ class JournalsController < ApplicationController
     end
 
     def create
-        journal = @user.journals.new(journal_params)
+        journal = @user.journals.new
+        journal.trail_id = params[:journal][:trailId]
+        journal.date_of_run = params[:journal][:dateOfRun]
+        binding.pry
         if journal.save
-          render json: journal, except: [:created_at, :updated_at]
+          render json: journal
         else
           render json: {message: "Journal could not be created"}
         end
@@ -34,6 +37,6 @@ class JournalsController < ApplicationController
     end
   
     def journal_params
-      params.require(:journal).permit(:user_id, :trail_id)
+      params.require(:journal).permit(:user_id, :trail_id, :date_of_run)
     end
 end
