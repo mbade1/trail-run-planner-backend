@@ -7,8 +7,8 @@ class UsersController < ApplicationController
     
     def create
       user = User.new
-      user.username = params[:user]
-      user.password = params[:password]
+      user.username = params[:user][:user]
+      user.password = params[:user][:password]
       if user.save
         render json: user
       else
@@ -33,6 +33,10 @@ class UsersController < ApplicationController
       else 
         render json: {message: "User not found."}
       end 
+    end
+
+    def destroy
+      user = User.find_by(id: params[:id])
     end
 
     private

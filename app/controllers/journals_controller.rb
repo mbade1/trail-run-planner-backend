@@ -1,12 +1,10 @@
 class JournalsController < ApplicationController
-    before_action :set_journal 
+    before_action :set_journal
     def index
         render json: @user.journals
     end
 
     def create
-      binding.pry
-
         journal = @user.journals.new
         journal.trail_id = params[:journal][:trailId]
         journal.date_of_run = params[:journal][:dateOfRun]
@@ -20,10 +18,6 @@ class JournalsController < ApplicationController
         journal.conditionStatus = params[:journal][:conditionStatus]
         journal.latitude = params[:journal][:latitude]
         journal.longitude = params[:journal][:latitude]
-
-
-        binding.pry
-
         if journal.save
           render json: journal
         else
@@ -39,6 +33,34 @@ class JournalsController < ApplicationController
           render json: {message: "Journal not found."}
         end 
     end
+
+    def update
+      journal = @user.journals.find_by(id: params[:id])
+      journal.t_shirt = params[:data][:tShirt]
+      journal.shorts = params[:data][:shorts]
+      journal.pants = params[:data][:pants]
+      journal.hat = params[:data][:hat]
+      journal.shoes = params[:data][:shoes]
+      journal.socks = params[:data][:socks]
+      journal.jacket = params[:data][:jacket]
+      journal.gloves = params[:data][:gloves]
+      journal.map = params[:data][:map]
+      journal.watch = params[:data][:watch]
+      journal.cellphone = params[:data][:cellPhone]
+      journal.food = params[:data][:food]
+      journal.water = params[:data][:water]
+      journal.running_pack = params[:data][:runningPack]
+      journal.first_aid_pack = params[:data][:firstAidPack]
+      journal.sunscreen = params[:data][:sunScreen]
+      journal.bugspray = params[:data][:bugSpray]
+      if journal.save
+        render json: journal
+      else
+        render json: {message: 'Journal could not be updated'}
+      end
+
+    end
+
 
     def destroy
         journal = @user.journals.find_by(id: params[:id])
