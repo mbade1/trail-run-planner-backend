@@ -58,9 +58,7 @@ class JournalsController < ApplicationController
       else
         render json: {message: 'Journal could not be updated'}
       end
-
     end
-
 
     def destroy
         journal = @user.journals.find_by(id: params[:id])

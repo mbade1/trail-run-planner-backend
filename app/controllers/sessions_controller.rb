@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
             render json: user
         else
             render json: {
-            errors: "Those credentials don't match anything we have in our database"
+            message: "Username and/or Password are incorrect."
         }
         end
     end

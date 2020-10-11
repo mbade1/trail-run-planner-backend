@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       if user.save
         render json: user
       else
-        render json: {message: "Signup Failed"}
+        render json: {message: "Signup Failed - Username must be unique."}
       end
     end
 
