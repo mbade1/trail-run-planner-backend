@@ -17,7 +17,7 @@ class JournalsController < ApplicationController
     journal.conditionDetails = params[:journal][:conditionDetails]
     journal.conditionStatus = params[:journal][:conditionStatus]
     journal.latitude = params[:journal][:latitude]
-    journal.longitude = params[:journal][:latitude]
+    journal.longitude = params[:journal][:longitude]
     if journal.save
       render json: journal
     else
